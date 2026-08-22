@@ -11,6 +11,8 @@ spec:
     repoURL: https://github.com/jmhershey125/talos.git
     targetRevision: main
     path: gitops/infra  # Points ArgoCD to watch your infra folder
+    directory:
+      recurse: true
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
