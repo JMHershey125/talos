@@ -15,6 +15,11 @@ spec:
           enabled: true
         speaker:
           enabled: true
+  ignoreDifferences:
+    - group: apiextensions.k8s.io
+      kind: CustomResourceDefinition
+      jsonPoints:
+        - /spec/conversion/webhook/clientconfig/caBundle
   destination:
     server: https://kubernetes.default.svc
     namespace: metallb-system
