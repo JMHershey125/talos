@@ -1,0 +1,5 @@
+machine:
+  disks:
+    - device: /dev/xvdb
+      partitions:
+        - mountpoint: /var/lib/longhorn
