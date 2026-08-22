@@ -18,8 +18,8 @@ spec:
   ignoreDifferences:
     - group: apiextensions.k8s.io
       kind: CustomResourceDefinition
-      jsonPoints:
-        - /spec/conversion/webhook/clientconfig/caBundle
+      jsonPointers:
+        - /spec/conversion/webhook/clientConfig/caBundle
   destination:
     server: https://kubernetes.default.svc
     namespace: metallb-system
