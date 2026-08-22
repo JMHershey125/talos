@@ -24,3 +24,20 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: home-network-pool
+  namespace: metallb-system
+spec:
+  addresses:
+  - 10.74.5.100-10.74.5.200
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: home-network-l2
+  namespace: metallb-system
+spec:
+  ipAddressPools:
+  - home-network-pool
