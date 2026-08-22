@@ -63,8 +63,8 @@ echo "=== Bootstrap generation complete! ==="
 ls -la "$OUTPUT_DIR/talos01.yaml" "$OUTPUT_DIR/talos02.yaml" "$OUTPUT_DIR/talos03.yaml" "$OUTPUT_DIR/talosconfig"
 echo "BACKUP"
 cp -r $OUTPUT_DIR/* /Users/jmhershey125/Documents/kube/
-cat << 'EOF' >> ~/.zshrc
 ls -la /Users/jmhershey125/Documents/kube/
+cat << 'EOF' >> ~/.zshrc
 # Talos Configuration Defaults
 export TALOSCONFIG="/Users/jmhershey125/git/talos/talos/talosconfig"
 EOF
