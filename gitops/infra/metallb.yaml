@@ -8,7 +8,6 @@ spec:
   source:
     repoURL: https://metallb.github.io/metallb
     chart: metallb
-    # targetRevision is omitted, so Argo CD grabs the latest chart automatically
     helm:
       values: |
         controller:
@@ -24,6 +23,8 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+      - ServerSideApply=true
+---
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
