@@ -2,13 +2,9 @@
 talosconfig
 controlplane.yaml
 worker.yaml
-*.yaml
-!*template.yaml
 
 # OS & IDE Files
 .DS_Store
 .idea/
 .vscode/
 
-#allow talos yaml
-!talos/*.yaml
