@@ -1,5 +1,7 @@
 version: v1alpha1
 machine:
+  install:
+    disk: /dev/xvda
   disks:
     - device: /dev/xvdb
       partitions:

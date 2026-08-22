@@ -2,7 +2,9 @@
 talosconfig
 controlplane.yaml
 worker.yaml
-
+talos01.yaml
+talos02.yaml
+talos03.yaml
 # OS & IDE Files
 .DS_Store
 .idea/
