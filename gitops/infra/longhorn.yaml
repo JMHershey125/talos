@@ -47,13 +47,3 @@ metadata:
     pod-security.kubernetes.io/enforce: privileged
   annotations:
     argocd.argoproj.io/sync-wave: "-2"
----
-apiVersion: scheduling.k8s.io/v1
-kind: PriorityClass
-metadata:
-  name: longhorn-critical
-  annotations:
-    argocd.argoproj.io/sync-wave: "-1"
-value: 1000000000
-globalDefault: false
-description: "Priority class for Longhorn critical components"
