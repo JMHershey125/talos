@@ -15,13 +15,13 @@ echo ""
 echo "=== Step 1: Applying configurations and rebooting nodes ==="
 
 echo "Applying talos01.yaml to $dhcp1 (with reboot)..."
-talosctl apply-config --insecure --nodes "$dhcp1" --file "$OUTPUT_DIR/talos01.yaml" --mode=reboot
+talosctl apply-config --insecure --nodes "$dhcp1" --file "$OUTPUT_DIR/talos01.yaml" --mode reboot
 
 echo "Applying talos02.yaml to $dhcp2 (with reboot)..."
-talosctl apply-config --insecure --nodes "$dhcp2" --file "$OUTPUT_DIR/talos02.yaml" --mode=reboot
+talosctl apply-config --insecure --nodes "$dhcp2" --file "$OUTPUT_DIR/talos02.yaml" --mode reboot
 
 echo "Applying talos03.yaml to $dhcp3 (with reboot)..."
-talosctl apply-config --insecure --nodes "$dhcp3" --file "$OUTPUT_DIR/talos03.yaml" --mode=reboot
+talosctl apply-config --insecure --nodes "$dhcp3" --file "$OUTPUT_DIR/talos03.yaml" --mode reboot
 
 echo ""
 echo "=== Step 2: Waiting for nodes to come up on static IPs (10.74.5.11-13)... ==="
@@ -38,4 +38,3 @@ talosctl kubeconfig -f --nodes 10.74.5.11 --talosconfig "$OUTPUT_DIR/talosconfig
 
 echo ""
 echo "=== Deployment Complete! ==="
-kubectl get nodes
