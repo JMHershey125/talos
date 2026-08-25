@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: external-dns
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
@@ -10,25 +12,23 @@ spec:
   source:
     repoURL: 'https://kubernetes-sigs.github.io/external-dns/'
     chart: external-dns
-    targetRevision: 0.22.0
+    targetRevision: 1.21.1
     helm:
       values: |
         provider:
           name: webhook
-        webhook:
-          image:
-            repository: ghcr.io/home-operations/external-dns-unifi-webhook
-            tag: main
-          env:
-            - name: UNIFI_HOST
-              value: "https://10.74.1.1"
-            - name: UNIFI_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: unifi-secret
-                  key: UNIFI_API_KEY
-            - name: UNIFI_SKIP_TLS_VERIFY
-              value: "true"
+        env:
+          - name: UNIFI_HOST
+            value: "https://10.74.1.1"
+          - name: UNIFI_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: unifi-secret
+                key: UNIFI_API_KEY
+          - name: UNIFI_SKIP_TLS_VERIFY
+            value: "true"
+        extraArgs:
+          - --webhook-provider-url=http://localhost:8888
         sources:
           - service
           - ingress
