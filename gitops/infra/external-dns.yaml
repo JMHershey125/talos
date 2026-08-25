@@ -9,16 +9,12 @@ spec:
   project: default
   source:
     repoURL: 'https://kubernetes-sigs.github.io/external-dns/'
-    targetRevision: '1.21.1'
     chart: external-dns
+    targetRevision: 1.15.0
     helm:
       values: |
-        fullnameOverride: external-dns-unifi
         provider:
           name: webhook
-        sources:
-          - ingress
-          - service
         webhook:
           image:
             repository: ghcr.io/home-operations/external-dns-unifi-webhook
@@ -29,8 +25,18 @@ spec:
             - name: UNIFI_API_KEY
               valueFrom:
                 secretKeyRef:
-                  name: unifi-dns-secret
+                  name: unifi-secret
                   key: UNIFI_API_KEY
+            - name: UNIFI_SKIP_TLS_VERIFY
+              value: "true"
+        sources:
+          - service
+          - ingress
+        domainFilters:
+          - ntsme.org
+        policy: sync
+        registry: txt
+        txtOwnerId: k8s-cluster
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: external-dns
