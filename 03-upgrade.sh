@@ -50,3 +50,4 @@ sleep 15
 
 echo "PASSWORD FOR ARGO ADMIN: $(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)"
 kubectl apply -f gitops/root.yaml -n argocd
+kubectl apply -f gitops/bootstrap.yaml -n argocd
