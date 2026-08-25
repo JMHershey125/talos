@@ -1,0 +1,42 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: external-dns
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: 'https://kubernetes-sigs.github.io/external-dns/'
+    targetRevision: '1.21.1'
+    chart: external-dns
+    helm:
+      values: |
+        fullnameOverride: external-dns-unifi
+        provider:
+          name: webhook
+        sources:
+          - ingress
+          - service
+        webhook:
+          image:
+            repository: ghcr.io/home-operations/external-dns-unifi-webhook
+            tag: main
+          env:
+            - name: UNIFI_HOST
+              value: "https://10.74.1.1"
+            - name: UNIFI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: unifi-dns-secret
+                  key: UNIFI_API_KEY
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: external-dns
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
