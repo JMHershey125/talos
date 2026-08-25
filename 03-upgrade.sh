@@ -1,6 +1,6 @@
 echo "Upgrading to load extensions"
 talosctl upgrade --nodes 10.74.5.11,10.74.5.12,10.74.5.13 \
-  --image factory.talos.dev/installer/d30235af7822d8ab9218631278e8cf545cdccb30650607f2211e4f670489587f:v1.13.7 \
+  --image factory.talos.dev/installer/d30235af7822d8ab9218631278e8cf545cdccb30650607f2211e4f670489587f:v1.13.9 \
   --talosconfig ./talos/talosconfig
 echo "Starting Kube config"
 kubectl create namespace argocd

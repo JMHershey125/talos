@@ -1,5 +1,8 @@
 version: v1alpha1
 machine:
+  nodeLabels:
+    node.kubernetes.io/exclude-from-external-load-balancers:
+      $patch: delete
   install:
     disk: /dev/xvda
     image: factory.talos.dev/installer/d30235af7822d8ab9218631278e8cf545cdccb30650607f2211e4f670489587f:v1.13.7
