@@ -17,18 +17,20 @@ spec:
       values: |
         provider:
           name: webhook
-        env:
-          - name: UNIFI_HOST
-            value: "https://10.74.1.1"
-          - name: UNIFI_API_KEY
-            valueFrom:
-              secretKeyRef:
-                name: unifi-secret
-                key: UNIFI_API_KEY
-          - name: UNIFI_SKIP_TLS_VERIFY
-            value: "true"
-        extraArgs:
-          - --webhook-provider-url=http://localhost:8888
+        webhook:
+          image:
+            repository: ghcr.io/home-operations/external-dns-unifi-webhook
+            tag: main
+          env:
+            - name: UNIFI_HOST
+              value: "https://10.74.1.1"
+            - name: UNIFI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: unifi-secret
+                  key: UNIFI_API_KEY
+            - name: UNIFI_SKIP_TLS_VERIFY
+              value: "true"
         sources:
           - service
           - ingress
