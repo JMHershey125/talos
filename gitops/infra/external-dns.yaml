@@ -27,7 +27,7 @@ spec:
             - name: UNIFI_API_KEY
               valueFrom:
                 secretKeyRef:
-                  name: unifi-secret
+                  name: unifi-dns-secret
                   key: UNIFI_API_KEY
             - name: UNIFI_SKIP_TLS_VERIFY
               value: "true"
