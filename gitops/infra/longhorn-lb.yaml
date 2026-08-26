@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: longhorn-frontend-external
   namespace: longhorn-system
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: longhorn.ntsme.org
 spec:
   type: LoadBalancer
   ports:
