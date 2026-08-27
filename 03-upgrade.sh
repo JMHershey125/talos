@@ -47,7 +47,7 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 
 echo "Waiting for ArgoCD CRDs/Deployments to stabilize..."
 sleep 15
-
+kubectl apply -f /Users/jmhershey125/Documents/kube/sealed-secrets-key.yaml
 echo "PASSWORD FOR ARGO ADMIN: $(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)"
 kubectl apply -f gitops/root.yaml -n argocd
 kubectl apply -f gitops/bootstrap.yaml -n argocd
