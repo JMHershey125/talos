@@ -4,7 +4,7 @@ metadata:
   name: longhorn-frontend-external
   namespace: longhorn-system
   annotations:
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "2"
     external-dns.alpha.kubernetes.io/hostname: longhorn.ntsme.org
 spec:
   type: LoadBalancer
