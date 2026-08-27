@@ -43,7 +43,7 @@ done
 echo "--------------------------------------------------"
 echo "=== Step 2: Applying GitOps Manifests (ArgoCD) ==="
 kubectl create namespace argocd --dry-run=client -o yaml | kubectl apply -f -
-kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml --force-conflicts --server-side
 
 echo "Waiting for ArgoCD CRDs/Deployments to stabilize..."
 sleep 15
