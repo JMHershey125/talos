@@ -38,3 +38,6 @@ talosctl kubeconfig -f --nodes 10.74.5.11 --talosconfig "$OUTPUT_DIR/talosconfig
 
 echo ""
 echo "=== Deployment Complete! ==="
+echo "SLEEP 60 and run 03-upgrade"
+sleep 60
+~/git/talos/03-upgrade.sh
