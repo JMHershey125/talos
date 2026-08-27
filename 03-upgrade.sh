@@ -46,7 +46,7 @@ kubectl create namespace argocd --dry-run=client -o yaml | kubectl apply -f -
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml --force-conflicts --server-side
 
 echo "Waiting for ArgoCD CRDs/Deployments to stabilize..."
-sleep 15
+sleep 30
 kubectl apply -f /Users/jmhershey125/Documents/kube/sealed-secrets-key.yaml
 echo "PASSWORD FOR ARGO ADMIN: $(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)"
 kubectl apply -f gitops/root.yaml -n argocd
